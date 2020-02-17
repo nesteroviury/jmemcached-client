@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ru.dev</groupId>
+    <artifactId>jmemcached-client</artifactId>
+    <version>0.0.1</version>
+    <packaging>jar</packaging>
+    <name>jmemcached-client</name>
+
+    <description>
+        jmemcached-client is a Java client for jmemcached server
+    </description>
+
+    <developers>
+        <developer>
+            <name>Yuri Nesterov</name>
+            <email>Yuri Nesterov nesteroviury@gmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <properties>
+        <!--common-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--plugins-->
+        <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
+        <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
+        <maven.compiler.plugin.source>1.7</maven.compiler.plugin.source>
+        <maven.compiler.plugin.target>1.7</maven.compiler.plugin.target>
+        <cobertura.plugin.version>2.7</cobertura.plugin.version>
+        <findbugs.plugin.version>3.0.6-SNAPSHOT</findbugs.plugin.version>
+        <pmd.plugin.version>3.13.0</pmd.plugin.version>
+
+        <!--dependencies-->
+        <mockito.version>2.6.3</mockito.version>
+        <junit.version>4.12</junit.version>
+        <jmemcached.common.version>0.0.1</jmemcached.common.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>ru.dev</groupId>
+            <artifactId>jmemcached-common</artifactId>
+            <version>${jmemcached.common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>jmemcached-client</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin.version}</version>
+                    <configuration>
+                        <source>${maven.compiler.plugin.source}</source>
+                        <target>${maven.compiler.plugin.target}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven.source.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>${cobertura.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${pmd.plugin.version}</version>
+                <configuration>
+                    <targetJdk>${maven.compiler.plugin.target}</targetJdk>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>
